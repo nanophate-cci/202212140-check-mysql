@@ -11,8 +11,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            mysql --version
-            yum update -y
+            #yum update -y
             yum localinstall -y --nogpgcheck https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
             yum install -y --nogpgcheck mysql-community-client tar unzip git
             mysql --version
