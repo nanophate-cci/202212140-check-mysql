@@ -4,10 +4,6 @@ jobs:
     docker:
       - image: amazoncorretto:17.0.3
       - image: cimg/mysql:8.0.27
-        command:
-        - --character-set-server=utf8mb4
-        - --collation-server=utf8mb4_bin
-        - --sql-mode=STRICT_TRANS_TABLES,STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,TRADITIONAL,NO_ENGINE_SUBSTITUTION
       - image: cimg/redis:6.2.6
       - image: localstack/localstack:latest
     steps:
@@ -19,7 +15,3 @@ jobs:
             yum localinstall -y --nogpgcheck https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
             yum install -y --nogpgcheck mysql-community-client tar unzip git
             mysql --version
-            curl -sSL --fail --retry 3 --output /tmp/dockerize-linux-amd64.tar.gz "https://circle-downloads.s3.amazonaws.com/circleci-images/cache/linux-amd64/dockerize-latest.tar.gz" && \
-            tar -C /usr/local/bin -xzvf /tmp/dockerize-linux-amd64.tar.gz && \
-            rm -rf /tmp/dockerize-linux-amd64.tar.gz && \
-            dockerize --version
